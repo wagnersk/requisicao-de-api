@@ -40,8 +40,11 @@ Ao iniciar pela primeira vez:
 
 📝 Notas importantes
 	•	Todo o backend é simulado através do JSON Server.
+
 	•	A lógica de login e busca de dados está mockada para procurar o utilizador “hele”.
+
 	•	Pode editar o ficheiro db.json para adicionar, remover ou alterar dados.
+  
 	•	Ideal para testes locais antes de ligar a um backend real.
 
 ⸻
