@@ -1,32 +1,8 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Gus"
-    },
-    {
-      "id": null,
-      "name": "tested2"
-    },
-    {
-      "id": "dasdasdddd",
-      "name": "tested2"
-    },
-    {
-      "id": null,
-      "name": "tested2"
-    },
-    {
-      "id": "dasdasdddd",
-      "name": "tested2"
-    },
-    {
-      "id": "teste",
-      "name": "testtt"
-    },
-    {
-      "id": "Gus",
-      "name": "Gus"
+      "id": "hele",
+      "name": "hele"
     }
   ]
 }

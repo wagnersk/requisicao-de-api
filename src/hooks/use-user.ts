@@ -1,49 +1,45 @@
-import React from "react";
-import { api, fetcher } from "../helpers/api";
-import type { User } from "../models/user";
+import React from "react"
+import { api, fetcher } from "../helpers/api"
+import type { User } from "../models/user"
 
 export default function useUser() {
+  const [user, setUser] = React.useState<User | null>(null)
+  const [requestStatus, setRequestStatus] = React.useState<'idle' | 'loading' | 'saving'>('idle')
+  
+  const getUser = React.useCallback(async(username: string) => {
+    try {
+      setRequestStatus('loading')
 
-    const [user, setUser ] = React.useState<User |null>(null)
-    const [requestStatus, setRequestsStatus ] = React.useState<'idle' | 'loading' | 'saving'>('idle')
+      const data = await fetcher(`/users/${username}`)
 
-    const getUser = React.useCallback(async  (username: string) => {
-        
-        try{
-           setRequestsStatus('loading')
-           const data =  await fetcher(`/users/${username}`)        
-           setUser(data)
-
-        } catch(e) {
-        console.error(e)
-        alert('Erro ao buscar usuário')
-        } finally {
-            setRequestsStatus('idle')
-        }
-        
-    },[])
-
-    async function createUser(payload:User) {
-        try {
-            setRequestsStatus('saving');
-
-            await api('/users', { method: 'POST', body: JSON.stringify(payload) })
-            alert('Usuário criado com sucesso!')
-
-        } catch(e) {
-            console.error(e)
-            alert('Erro ao criar usuário')
-        } finally {
-            setRequestsStatus('idle')
-        }
+      setUser(data)
+    } catch (e) {
+      console.error(e);
+      alert('Erro ao buscar usuário');
+    } finally {
+      setRequestStatus('idle')
     }
+  }, [])
 
-    return {
-        user,
-        userRequestStatus: requestStatus,
-        getUser,
-        createUser
+  async function createUser(payload: User) {
+    try {
+      setRequestStatus('saving');
 
+      await api('/users', { method: 'POST', body: JSON.stringify(payload) })
+      
+      alert('Usuário criado com sucesso!')
+    } catch (e) {
+      console.error(e)
+      alert('Erro ao criar usuaŕio')
+    } finally {
+      setRequestStatus('idle')
     }
+  }
 
+  return {
+    user,
+    userRequestStatus: requestStatus,
+    getUser,
+    createUser
+  }
 }

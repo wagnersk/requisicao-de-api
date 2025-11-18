@@ -5,12 +5,11 @@ export default function UserInfo() {
     const { user, userRequestStatus, getUser } = useUser()
 
     React.useEffect(() => {
-        getUser("Gus")
+        getUser("hele")
     }, [getUser])
 
-
     if (userRequestStatus === 'loading') {
-        return <p>Carregando...</p>
+        return <div>Carregando usuário...</div>
     }
 
     return (
